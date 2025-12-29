@@ -287,6 +287,18 @@ void initPhase1(void)
     configTargetPreInit();
 #endif
 
+    ioPreinitByIO(IOGetByTag(IO_TAG(IMU_ENABLE_PIN)), IOCFG_OUT_PP, PREINIT_PIN_STATE_HIGH);
+
+    // Force the IMU enable pin HIGH to turn on the regulator
+    //static IO_t imuEnablePin = IO_NONE;
+    //imuEnablePin = IOGetByTag(IO_TAG(IMU_ENABLE_PIN));
+    //IOInit(imuEnablePin, OWNER_OSD, 0);
+    //IOConfigGPIO(imuEnablePin, IOCFG_OUT_PP);
+
+    // Set IMU enable pin HIGH
+    //IOHi(imuEnablePin);
+
+
 #ifdef CONFIG_IN_SDCARD
 
     //

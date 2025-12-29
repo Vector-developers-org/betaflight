@@ -71,6 +71,14 @@ void IOInitGlobal(void)
     bprintf("9V enable pin: %d set low", pin9);
     ioRecs[pin9].owner = OWNER_SYSTEM;
 #endif
+
+    // Force the IMU enable pin high for the VECTOR_H7
+    const int pinV = IO_PINBYTAG(IO_TAG(IMU_ENABLE_PIN));
+    gpio_init(pinV);
+    gpio_set_dir(pinV, 1);
+    gpio_put(pin5, 1);
+    bprintf("IMU enable pin: %d set high", pinV);
+    ioRecs[pinV].owner = OWNER_SYSTEM;
 }
 
 uint32_t IO_EXTI_Line(IO_t io)
