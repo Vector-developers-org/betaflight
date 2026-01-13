@@ -443,8 +443,8 @@ void icm456xxGyroInit(gyroDev_t *gyro)
     case ICM_45605_SPI:
     default:
         gyro->scale = GYRO_SCALE_2000DPS;
-        gyro->gyroRateKHz = GYRO_RATE_6400_Hz;
-        gyro->gyroSampleRateHz = 6400;
+        gyro->gyroRateKHz = GYRO_RATE_8_kHz;
+        gyro->gyroSampleRateHz = 8000;
         spiWriteReg(dev, ICM456XX_GYRO_CONFIG0, ICM456XX_GYRO_FS_SEL_2000DPS | ICM456XX_GYRO_ODR_6K4_LN);
         delay(ICM456XX_GYRO_STARTUP_TIME_MS); // Per datasheet Table 9-6: 35ms minimum startup time
         break;
