@@ -374,12 +374,12 @@ max7456InitStatus_e max7456Init(const max7456Config_t *max7456Config, const vcdP
     // Write 0xff to conclude any current SPI transaction the MAX7456 is expecting
     spiWrite(dev, END_STRING);
 
-    uint8_t osdm = spiReadRegMsk(dev, MAX7456ADD_OSDM);
+    //uint8_t osdm = spiReadRegMsk(dev, MAX7456ADD_OSDM);
 
-    if (osdm != 0x1B) {
-        IOConfigGPIO(dev->busType_u.spi.csnPin, IOCFG_IPU);
-        return MAX7456_INIT_NOT_FOUND;
-    }
+    //if (osdm != 0x1B) {
+    //    IOConfigGPIO(dev->busType_u.spi.csnPin, IOCFG_IPU);
+    //    return MAX7456_INIT_NOT_FOUND;
+    //}
 
     // At this point, we can claim the ownership of the CS pin
     max7456DeviceDetected = true;
@@ -427,13 +427,13 @@ max7456InitStatus_e max7456Init(const max7456Config_t *max7456Config, const vcdP
     spiSetClkDivisor(dev, max7456SpiClockDiv);
 
     // force soft reset on Max7456
-    spiWriteReg(dev, MAX7456ADD_VM0, MAX7456_RESET);
+    //spiWriteReg(dev, MAX7456ADD_VM0, MAX7456_RESET);
 
     // Wait for 200us before polling for completion of reset
-    delayMicroseconds(200);
+    //delayMicroseconds(200);
 
     // Wait for reset to complete
-    while ((spiReadRegMsk(dev, MAX7456ADD_VM0) & MAX7456_RESET) != 0x00);
+    //while ((spiReadRegMsk(dev, MAX7456ADD_VM0) & MAX7456_RESET) != 0x00);
 
     // Setup values to write to registers
     videoSignalCfg = pVcdProfile->video_system;
